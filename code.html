@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Verification</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #150b05;
+            font-family: Arial, sans-serif;
+            color: #D1B27B;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .title {
+            font-size: 26px;
+            margin-bottom: 25px;
+            letter-spacing: 2px;
+        }
+
+        .password-box {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .digit {
+            width: 50px;
+            height: 60px;
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            border: 2px solid #B88655;
+            border-radius: 10px;
+            background: #2b170c;
+            color: #D1B27B;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .digit:focus {
+            border-color: #B3682D;
+            box-shadow: 0 0 12px #B3682D;
+        }
+
+        .correct {
+            background: #2e8b57 !important;
+            border-color: #5cff9d !important;
+            color: white !important;
+            box-shadow: 0 0 15px #5cff9d;
+        }
+
+        .wrong {
+            border-color: #9D3E13 !important;
+            animation: shake 0.3s;
+        }
+
+        @keyframes shake {
+            0%   { transform: translateX(0); }
+            25%  { transform: translateX(-5px); }
+            50%  { transform: translateX(5px); }
+            75%  { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+
+        @media (max-width: 400px) {
+            .digit {
+                width: 42px;
+                height: 52px;
+                font-size: 24px;
+            }
+
+            .password-box {
+                gap: 6px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="title">
+            ENTER SECRET PASSWORD :
+        </div>
+
+        <div class="password-box">
+
+            <input
+                type="text"
+                class="digit"
+                maxlength="1"
+                inputmode="numeric"
+                autocomplete="off"
+            >
+
+            <input
+                type="text"
+                class="digit"
+                maxlength="1"
+                inputmode="numeric"
+                autocomplete="off"
+            >
+
+            <input
+                type="text"
+                class="digit"
+                maxlength="1"
+                inputmode="numeric"
+                autocomplete="off"
+            >
+
+            <input
+                type="text"
+                class="digit"
+                maxlength="1"
+                inputmode="numeric"
+                autocomplete="off"
+            >
+
+            <input
+                type="text"
+                class="digit"
+                maxlength="1"
+                inputmode="numeric"
+                autocomplete="off"
+            >
+
+            <input
+                type="text"
+                class="digit"
+                maxlength="1"
+                inputmode="numeric"
+                autocomplete="off"
+            >
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        const inputs = document.querySelectorAll(".digit");
+
+        const correctCode = "150910";
+
+        inputs.forEach((input, index) => {
+
+            input.addEventListener("input", function () {
+
+                this.value = this.value.replace(/[^0-9]/g, "");
+
+                if (this.value !== "" && index < inputs.length - 1) {
+                    inputs[index + 1].focus();
+                }
+
+                checkPassword();
+            });
+
+
+            input.addEventListener("keydown", function (event) {
+
+                if (
+                    event.key === "Backspace" &&
+                    this.value === "" &&
+                    index > 0
+                ) {
+                    inputs[index - 1].focus();
+                }
+
+            });
+
+        });
+
+
+        function checkPassword() {
+
+            let enteredCode = "";
+
+            inputs.forEach(input => {
+                enteredCode += input.value;
+            });
+
+
+            if (enteredCode.length === 6) {
+
+                if (enteredCode === correctCode) {
+
+                    inputs.forEach(input => {
+                        input.classList.add("correct");
+                    });
+
+                    setTimeout(() => {
+
+                        window.location.href =
+                            "dex.html";
+
+                    }, 800);
+
+                } else {
+
+                    inputs.forEach(input => {
+                        input.classList.add("wrong");
+                    });
+
+                    setTimeout(() => {
+
+                        inputs.forEach(input => {
+                            input.classList.remove("wrong");
+                        });
+
+                    }, 500);
+
+                }
+
+            }
+
+        }
+
+        inputs[0].focus();
+
+    </script>
+
+</body>
+</html>
