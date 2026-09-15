@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>For You</title>
+
     <style>
 
         :root {
@@ -12,13 +14,16 @@
             --color-amber: #B3682D;
             --color-rust: #9D3E13;
             --color-deep-brown: #6C3B1A;
-            --bg-gradient: linear-gradient(135deg, #2b170c 0%, #150b05 100%);
+
             --color-text-main: #3A1F0F;
             --color-text-soft: #F3E1B7;
-            --color-decoration: #D1B27B;
-            --color-decoration-glow: rgba(209, 178, 123, 0.32);
             --color-white: #e6d5c3;
         }
+
+
+        /* =========================
+           RESET
+        ========================== */
 
         * {
             margin: 0;
@@ -26,159 +31,470 @@
             box-sizing: border-box;
         }
 
+
         html {
             scroll-behavior: smooth;
         }
 
+
         body {
             min-height: 100vh;
-            font-family: Georgia, 'Times New Roman', serif;
-            color: var(--color-text-main);
             overflow-x: hidden;
-            align-items: center;
-            background-image: linear-gradient( 90deg, rgba(243, 225, 183, 0.08), rgba(58, 31, 15, 0.05) ), url(wallpaper.png);
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            z-index: 999;
+
+            font-family:
+                Georgia,
+                'Times New Roman',
+                serif;
+
+            color: var(--color-text-main);
         }
+
+
+        /* =========================
+           MAIN PAGE
+        ========================== */
+
+        .page {
+
+            position: relative;
+
+            width: 100%;
+            min-height: 100vh;
+
+            overflow: hidden;
+
+            background-image:
+                linear-gradient(
+                    90deg,
+                    rgba(243, 225, 183, 0.08),
+                    rgba(58, 31, 15, 0.05)
+                ),
+                url("wallpaper.png");
+
+            background-size: cover;
+
+            background-position:
+                center center;
+
+            background-repeat: no-repeat;
+        }
+
+
+        /* =========================
+           CONTENT
+        ========================== */
 
         .content {
+
             position: relative;
-            z-index: 2;
-            width: min(650px, 90%);
-            margin-top: 9vw;
+
+            z-index: 5;
+
+            width: min(620px, 90%);
+
             margin-left: 7vw;
             padding: 45px;
+
             text-align: center;
+
+            /* 
+               Lapisan tipis agar tulisan
+               tetap terlihat ketika ranting
+               berada di belakangnya.
+            */
+            background:
+                rgba(243, 225, 183, 0.18);
+
+            border-radius: 22px;
+
+            backdrop-filter: blur(1.5px);
+            -webkit-backdrop-filter: blur(1.5px);
         }
+
+
+        /* =========================
+           SUBTITLE
+        ========================== */
 
         .subtitle {
+
             display: inline-block;
+
             margin-bottom: 18px;
-            font-family: 'Trebuchet MS', sans-serif;
-            font-size: 15px;
-            letter-spacing: 5px;
+
+            font-family:
+                'Trebuchet MS',
+                sans-serif;
+
+            font-size: 14px;
+
+            letter-spacing: 4px;
+
             text-transform: uppercase;
+
             color: var(--color-rust);
+
             opacity: 0;
-            animation: fadeUp 1.2s ease forwards;
+
+            animation:
+                fadeUp 1.2s ease forwards;
         }
+
+
+        /* =========================
+           TITLE
+        ========================== */
 
         .title {
-            font-size: clamp(45px, 7vw, 82px);
+
+            font-size:
+                clamp(45px, 7vw, 82px);
+
             font-weight: normal;
-            line-height: 1;
-            color: var(--color-text-main);
-            text-shadow: 0 2px 0 rgba(243, 225, 183, 0.35);
+
+            line-height: 1.05;
+
+            color:
+                var(--color-text-main);
+
+            text-shadow:
+                0 2px 0
+                rgba(243, 225, 183, 0.65),
+
+                0 4px 12px
+                rgba(58, 31, 15, 0.12);
+
             opacity: 0;
-            animation: fadeUp 1.2s ease 0.2s forwards;
+
+            animation:
+                fadeUp 1.2s ease 0.2s forwards;
         }
+
 
         .title span {
-            color: var(--color-rust);
+            color:
+                var(--color-rust);
         }
+
+
+        /* =========================
+           LINE
+        ========================== */
 
         .line {
+
             width: 0;
+
             height: 1px;
-            margin: 25px auto;
-            background: linear-gradient(90deg, transparent, var(--color-rust), transparent);
-            animation: lineGrow 1.2s ease 0.8s forwards;
+
+            margin:
+                25px auto;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    var(--color-rust),
+                    transparent
+                );
+
+            animation:
+                lineGrow 1.2s ease 0.8s forwards;
         }
+
+
+        /* =========================
+           DESCRIPTION
+        ========================== */
 
         .description {
+
+            width: 100%;
+
             max-width: 500px;
-            margin: 0 auto;
-            font-size: 19px;
-            line-height: 1.9;
-            color: var(--color-deep-brown);
+
+            margin:
+                0 auto;
+
+            font-size: 18px;
+
+            line-height: 1.85;
+
+            color:
+                var(--color-deep-brown);
+
+            text-shadow:
+                0 1px 2px
+                rgba(243, 225, 183, 0.8);
+
             opacity: 0;
-            animation: fadeUp 1.2s ease 0.9s forwards;
+
+            animation:
+                fadeUp 1.2s ease 0.9s forwards;
         }
+
+
+        /* =========================
+           HEART
+        ========================== */
 
         .heart-wrapper {
+
             position: relative;
+
             width: 110px;
             height: 110px;
-            margin: 35px auto;
+
+            margin:
+                35px auto;
         }
 
+
         .heart {
+
             position: absolute;
+
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%) rotate(-45deg);
+
             width: 52px;
             height: 52px;
-            background: var(--color-rust);
-            filter: drop-shadow(0 0 12px rgba(157, 62, 19, 0.35));
-            animation: heartbeat 1.45s infinite ease-in-out;
+
+            background:
+                var(--color-rust);
+
+            transform:
+                translate(-50%, -50%)
+                rotate(-45deg);
+
+            filter:
+                drop-shadow(
+                    0 0 12px
+                    rgba(157, 62, 19, 0.35)
+                );
+
+            animation:
+                heartbeat 1.45s
+                infinite
+                ease-in-out;
         }
+
 
         .heart::before,
         .heart::after {
+
             content: "";
+
             position: absolute;
+
             width: 52px;
             height: 52px;
-            background: var(--color-rust);
+
+            background:
+                var(--color-rust);
+
             border-radius: 50%;
         }
 
+
         .heart::before {
+
             top: -26px;
             left: 0;
         }
 
+
         .heart::after {
+
             top: 0;
             left: 26px;
         }
 
+
         .heart-wrapper::before {
+
             content: "";
+
             position: absolute;
+
             width: 100%;
             height: 100%;
+
             left: 0;
             top: 0;
+
             border-radius: 50%;
-            border: 1px solid rgba(157, 62, 19, 0.25);
-            animation: pulseRing 1.45s infinite;
+
+            border:
+                1px solid
+                rgba(157, 62, 19, 0.25);
+
+            animation:
+                pulseRing 1.45s infinite;
         }
 
+
+        /* =========================
+           BUTTON
+        ========================== */
+
+        .button {
+
+            display: inline-block;
+
+            padding:
+                13px 30px;
+
+            border:
+                1px solid
+                var(--color-rust);
+
+            color:
+                var(--color-rust);
+
+            background:
+                rgba(243, 225, 183, 0.45);
+
+            text-decoration: none;
+
+            font-family:
+                'Trebuchet MS',
+                sans-serif;
+
+            font-size: 14px;
+
+            letter-spacing: 2px;
+
+            border-radius: 2px;
+
+            transition:
+                0.35s ease;
+
+            opacity: 0;
+
+            animation:
+                fadeUp 1.2s ease 1.2s forwards;
+        }
+
+
+        .button:hover {
+
+            color:
+                var(--color-white);
+
+            background:
+                var(--color-rust);
+
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 8px 25px
+                rgba(108, 59, 26, 0.25);
+        }
+
+
+        /* =========================
+           PARTICLES
+        ========================== */
+
+        .particle {
+
+            position: absolute;
+
+            z-index: 3;
+
+            width: 9px;
+            height: 9px;
+
+            border-radius: 50%;
+
+            background:
+                var(--color-rust);
+
+            opacity: 0;
+
+            pointer-events: none;
+
+            animation:
+                float 6s
+                infinite
+                ease-in-out;
+        }
+
+
+        .particle:nth-child(1) {
+            left: 12%;
+            top: 25%;
+            animation-delay: 0s;
+        }
+
+        .particle:nth-child(2) {
+            left: 34%;
+            top: 70%;
+            animation-delay: 1.5s;
+        }
+
+        .particle:nth-child(3) {
+            left: 48%;
+            top: 30%;
+            animation-delay: 3s;
+        }
+
+        .particle:nth-child(4) {
+            left: 20%;
+            top: 82%;
+            animation-delay: 4s;
+        }
+
+        .particle:nth-child(5) {
+            left: 58%;
+            top: 68%;
+            animation-delay: 2s;
+        }
+
+
+        /* =========================
+           ANIMATIONS
+        ========================== */
+
         @keyframes heartbeat {
+
             0% {
                 transform:
                     translate(-50%, -50%)
                     rotate(-45deg)
                     scale(1);
             }
+
             15% {
                 transform:
                     translate(-50%, -50%)
                     rotate(-45deg)
                     scale(1.18);
             }
+
             30% {
                 transform:
                     translate(-50%, -50%)
                     rotate(-45deg)
                     scale(1);
             }
+
             45% {
                 transform:
                     translate(-50%, -50%)
                     rotate(-45deg)
                     scale(1.14);
             }
+
             60% {
                 transform:
                     translate(-50%, -50%)
                     rotate(-45deg)
                     scale(1);
             }
+
             100% {
                 transform:
                     translate(-50%, -50%)
@@ -187,137 +503,355 @@
             }
         }
 
+
         @keyframes pulseRing {
+
             0% {
                 transform: scale(1);
                 opacity: 0;
             }
+
             25% {
                 opacity: 0.8;
             }
+
             100% {
                 transform: scale(1.75);
                 opacity: 0;
             }
         }
 
-        .button {
-            display: inline-block;
-            padding: 13px 30px;
-            border: 1px solid var(--color-rust);
-            color: var(--color-rust);
-            background: rgba(243, 225, 183, 0.35);
-            text-decoration: none;
-            font-family: 'Trebuchet MS', sans-serif;
-            font-size: 15px;
-            letter-spacing: 2px;
-            transition: 0.35s ease;
-            opacity: 0;
-            animation: fadeUp 1.2s ease 1.2s forwards;
-        }
-
-        .button:hover {
-            color: var(--color-white);
-            background: var(--color-rust);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(108, 59, 26, 0.25);
-        }
-
-        .particle {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--color-rust);
-            opacity: 0;
-            pointer-events: none;
-            animation: float 6s infinite ease-in-out;
-        }
-
-        .particle:nth-child(1) {left: 12%; top: 25%; animation-delay: 0s;}
-        .particle:nth-child(2) {left: 34%; top: 70%; animation-delay: 1.5s;}
-        .particle:nth-child(3) {left: 48%; top: 30%; animation-delay: 3s;}
-        .particle:nth-child(4) {left: 20%; top: 82%; animation-delay: 4s;}
-        .particle:nth-child(5) {left: 58%; top: 68%; animation-delay: 2s;}
 
         @keyframes float {
+
             0% {
-                transform: translateY(20px) scale(0.5);
+                transform:
+                    translateY(20px)
+                    scale(0.5);
+
                 opacity: 0;
             }
+
             25% {
                 opacity: 0.45;
             }
+
             50% {
-                transform: translateY(-35px) scale(1);
+                transform:
+                    translateY(-35px)
+                    scale(1);
             }
+
             75% {
                 opacity: 0.25;
             }
 
             100% {
-                transform: translateY(-80px) scale(0.4);
+                transform:
+                    translateY(-80px)
+                    scale(0.4);
+
                 opacity: 0;
             }
         }
+
 
         @keyframes fadeUp {
+
             from {
                 opacity: 0;
-                transform: translateY(25px);
+
+                transform:
+                    translateY(25px);
             }
+
             to {
                 opacity: 1;
-                transform: translateY(0);
+
+                transform:
+                    translateY(0);
             }
         }
 
+
         @keyframes lineGrow {
+
             from {
                 width: 0;
             }
+
             to {
                 width: 170px;
             }
         }
 
-        @media (max-width: 700px) {
+
+        /* ==================================================
+           LAPTOP / DESKTOP
+        ================================================== */
+
+        @media (min-width: 701px) {
+
             .page {
-                min-height: 100svh;
-                background-position: 65% center;
+
+                display: flex;
+
+                align-items: flex-start;
+
+                padding-top:
+                    clamp(70px, 9vw, 130px);
+
+                background-position:
+                    center center;
             }
+
 
             .content {
-                width: 92%;
-                margin: 0 auto;
-                padding: 30px 20px;
-            }
 
-            .title {
-                font-size: 52px;
-            }
+                margin-left:
+                    clamp(30px, 7vw, 120px);
 
-            .description {
-                font-size: 15px;
-                line-height: 1.75;
-            }
-
-            .heart-wrapper {
-                margin: 30px auto;
+                margin-top: 0;
             }
         }
+
+
+        /* ==================================================
+           HP
+        ================================================== */
+
+        @media (max-width: 700px) {
+
+            .page {
+
+                min-height: 100svh;
+
+                /*
+                   Wallpaper tetap memenuhi
+                   seluruh layar HP.
+                */
+                background-size: cover;
+
+                /*
+                   Geser sedikit posisi wallpaper
+                   agar ranting tidak tepat di tengah.
+                */
+                background-position:
+                    62% center;
+
+                display: flex;
+
+                justify-content: center;
+
+                align-items: flex-start;
+
+                padding:
+                    55px 0 50px;
+            }
+
+
+            .content {
+
+                width:
+                    calc(100% - 32px);
+
+                max-width: 520px;
+
+                margin: 0 auto;
+
+                padding:
+                    28px 20px 32px;
+
+                border-radius:
+                    20px;
+
+                /*
+                   Lebih terang di HP
+                   supaya tulisan aman dibaca.
+                */
+                background:
+                    rgba(243, 225, 183, 0.68);
+
+                backdrop-filter:
+                    blur(3px);
+
+                -webkit-backdrop-filter:
+                    blur(3px);
+
+                box-shadow:
+                    0 10px 35px
+                    rgba(58, 31, 15, 0.10);
+            }
+
+
+            .subtitle {
+
+                font-size:
+                    clamp(9px, 2.5vw, 12px);
+
+                letter-spacing:
+                    clamp(2px, 1vw, 3.5px);
+
+                margin-bottom:
+                    13px;
+            }
+
+
+            .title {
+
+                font-size:
+                    clamp(40px, 13vw, 58px);
+
+                line-height:
+                    1.05;
+            }
+
+
+            .line {
+
+                margin:
+                    20px auto;
+            }
+
+
+            .description {
+
+                max-width:
+                    440px;
+
+                font-size:
+                    clamp(14px, 4vw, 17px);
+
+                line-height:
+                    1.75;
+
+                padding:
+                    0 2px;
+            }
+
+
+            .heart-wrapper {
+
+                width: 95px;
+                height: 95px;
+
+                margin:
+                    25px auto;
+            }
+
+
+            .heart {
+
+                width: 45px;
+                height: 45px;
+            }
+
+
+            .heart::before,
+            .heart::after {
+
+                width: 45px;
+                height: 45px;
+            }
+
+
+            .heart::before {
+                top: -22px;
+            }
+
+
+            .heart::after {
+                left: 22px;
+            }
+
+
+            .button {
+
+                padding:
+                    11px 20px;
+
+                font-size:
+                    12px;
+
+                letter-spacing:
+                    1.5px;
+            }
+
+
+            .particle {
+
+                width: 6px;
+                height: 6px;
+            }
+        }
+
+
+        /* ==================================================
+           HP KECIL
+        ================================================== */
+
+        @media (max-width: 380px) {
+
+            .page {
+
+                padding-top:
+                    35px;
+            }
+
+
+            .content {
+
+                width:
+                    calc(100% - 22px);
+
+                padding:
+                    24px 15px 28px;
+            }
+
+
+            .title {
+
+                font-size:
+                    38px;
+            }
+
+
+            .description {
+
+                font-size:
+                    13.5px;
+
+                line-height:
+                    1.7;
+            }
+
+
+            .heart-wrapper {
+
+                margin:
+                    22px auto;
+            }
+        }
+
 
     </style>
 </head>
 
+
 <body>
 
-    <main class="page"></main>
+    <main class="page">
+
+        <!-- PARTICLES -->
+
         <span class="particle"></span>
         <span class="particle"></span>
         <span class="particle"></span>
         <span class="particle"></span>
         <span class="particle"></span>
+
+
+        <!-- CONTENT -->
 
         <section class="content">
 
@@ -325,27 +859,35 @@
                 one more thing to tell you
             </p>
 
+
             <h1 class="title">
                 Happy <span>Birthday</span>
             </h1>
 
+
             <div class="line"></div>
 
+
             <p class="description">
-               For the person who became one of the most beautiful parts of my life,
-               may your life be as beautiful as the way you make mine feel.
-               and may this new year of your life be written in moments you will never forget.
+                For the person who became one of the most beautiful
+                parts of my life, may your life be as beautiful as
+                the way you make mine feel. And may this new year
+                of your life be written in moments you will never forget.
             </p>
+
 
             <div class="heart-wrapper">
                 <div class="heart"></div>
             </div>
+
 
             <a href="#" class="button">
                 You are my everything
             </a>
 
         </section>
-    </main> 
+
+    </main>
+
 </body>
 </html>
